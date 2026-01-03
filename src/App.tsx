@@ -7,6 +7,7 @@ import routes from "tempo-routes";
 const MockTestList = lazy(() => import("./components/mock-tests/MockTestList"));
 const MockTestPage = lazy(() => import("./components/mock-tests/MockTestPage"));
 const SpecificTest = lazy(() => import("./components/mock-tests/SpecificTest"));
+const PerformanceDashboard = lazy(() => import("./components/mock-tests/PerformanceDashboard"));
 const TutorialHome = lazy(() => import("./components/tutorials/TutorialHome"));
 const TutorialExample = lazy(() => import("./components/tutorials/TutorialExample"));
 const HistoryTutorial = lazy(() => import("./components/tutorials/HistoryTutorial"));
@@ -52,6 +53,7 @@ function App() {
           <Route path="/mock-tests" element={<MockTestList />} />
           <Route path="/mock-test/:testId" element={<MockTestPage />} />
           <Route path="/mock-test/specific" element={<SpecificTest />} />
+          <Route path="/performance-dashboard" element={<PerformanceDashboard />} />
           <Route path="/tutorials" element={<TutorialHome />} />
           <Route path="/tutorials/:categoryId" element={<CategoryPage />} />
           <Route

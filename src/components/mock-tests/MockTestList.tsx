@@ -14,6 +14,9 @@ import {
   Search,
   BookOpen,
   Trophy,
+  Star,
+  TrendingUp,
+  Award,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -32,6 +35,10 @@ interface MockTest {
   premium?: boolean;
   featured?: boolean;
   new?: boolean;
+  averageScore?: number;
+  topScore?: number;
+  qualityRating?: number;
+  tags?: string[];
 }
 
 const mockTests: MockTest[] = [
@@ -46,6 +53,10 @@ const mockTests: MockTest[] = [
     subjects: ["English", "Reasoning", "Mathematics", "GK/GS"],
     featured: true,
     new: true,
+    averageScore: 68.5,
+    topScore: 98,
+    qualityRating: 4.7,
+    tags: ["High Quality", "Detailed Analysis", "Expert Curated"],
   },
   {
     id: "1",
@@ -57,6 +68,10 @@ const mockTests: MockTest[] = [
     participants: 1234,
     subjects: ["Polity", "Geography", "Economy", "History", "Science"],
     featured: true,
+    averageScore: 58.3,
+    topScore: 95,
+    qualityRating: 4.9,
+    tags: ["Previous Year Pattern", "IAS Toppers Reviewed"],
   },
   {
     id: "2",
@@ -72,6 +87,10 @@ const mockTests: MockTest[] = [
       "Reasoning",
       "General Awareness",
     ],
+    averageScore: 72.4,
+    topScore: 100,
+    qualityRating: 4.6,
+    tags: ["Latest Pattern", "Detailed Solutions"],
   },
   {
     id: "3",
@@ -223,6 +242,34 @@ export default function MockTestList() {
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
       <div className="container mx-auto px-4 py-8">
+        {/* Performance Dashboard Quick Access Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30 rounded-lg p-6 border border-blue-200 dark:border-blue-800"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center">
+                <BarChart className="h-6 w-6 text-blue-600 dark:text-blue-400" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">Track Your Progress</h3>
+                <p className="text-sm text-muted-foreground">
+                  View detailed analytics and performance insights
+                </p>
+              </div>
+            </div>
+            <Button
+              onClick={() => navigate("/performance-dashboard")}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <Trophy className="h-4 w-4 mr-2" />
+              View Performance Dashboard
+            </Button>
+          </div>
+        </motion.div>
+
         <div className="text-center mb-8">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -368,7 +415,7 @@ export default function MockTestList() {
                         </div>
                       </CardHeader>
                       <CardContent>
-                        <div className="grid grid-cols-2 gap-4 mb-4">
+                        <div className="grid grid-cols-2 gap-3 mb-4">
                           <div className="flex items-center gap-2">
                             <Timer className="h-4 w-4 text-muted-foreground" />
                             <span className="text-sm text-muted-foreground">
@@ -393,21 +440,53 @@ export default function MockTestList() {
                               {test.subjects.length} Subjects
                             </span>
                           </div>
+                          {test.qualityRating && (
+                            <div className="flex items-center gap-2">
+                              <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                              <span className="text-sm font-medium">
+                                {test.qualityRating.toFixed(1)}/5.0
+                              </span>
+                            </div>
+                          )}
+                          {test.averageScore && (
+                            <div className="flex items-center gap-2">
+                              <TrendingUp className="h-4 w-4 text-blue-500" />
+                              <span className="text-sm text-muted-foreground">
+                                Avg: {test.averageScore}%
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        <div className="flex flex-wrap gap-1 mb-4">
-                          {test.subjects.slice(0, 3).map((subject, i) => (
-                            <span
-                              key={i}
-                              className="text-xs px-2 py-1 bg-accent rounded-full"
-                            >
-                              {subject}
-                            </span>
-                          ))}
-                          {test.subjects.length > 3 && (
-                            <span className="text-xs px-2 py-1 bg-accent rounded-full">
-                              +{test.subjects.length - 3} more
-                            </span>
+                        <div className="space-y-2 mb-4">
+                          <div className="flex flex-wrap gap-1">
+                            {test.subjects.slice(0, 3).map((subject, i) => (
+                              <span
+                                key={i}
+                                className="text-xs px-2 py-1 bg-accent rounded-full"
+                              >
+                                {subject}
+                              </span>
+                            ))}
+                            {test.subjects.length > 3 && (
+                              <span className="text-xs px-2 py-1 bg-accent rounded-full">
+                                +{test.subjects.length - 3} more
+                              </span>
+                            )}
+                          </div>
+                          {test.tags && test.tags.length > 0 && (
+                            <div className="flex flex-wrap gap-1">
+                              {test.tags.map((tag, i) => (
+                                <Badge
+                                  key={i}
+                                  variant="secondary"
+                                  className="text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                                >
+                                  <Award className="h-3 w-3 mr-1" />
+                                  {tag}
+                                </Badge>
+                              ))}
+                            </div>
                           )}
                         </div>
 

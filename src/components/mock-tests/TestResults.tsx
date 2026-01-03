@@ -11,6 +11,9 @@ import {
   BarChart,
   Users,
   ArrowRight,
+  TrendingUp,
+  Target,
+  Zap,
 } from "lucide-react";
 import { TestResults as TestResultsType } from "./MockTestInterface";
 
@@ -69,8 +72,8 @@ const TestResults: React.FC<TestResultsProps> = ({
         </div>
 
         {/* Score Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <Card className="md:col-span-1">
             <CardHeader className="pb-2">
               <CardTitle className="text-lg">Overall Score</CardTitle>
             </CardHeader>
@@ -160,6 +163,41 @@ const TestResults: React.FC<TestResultsProps> = ({
                     <span>Percentile</span>
                   </div>
                   <span className="font-semibold">96.5%</span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="pb-2">
+              <CardTitle className="text-lg">Performance Stats</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Target className="h-5 w-5 text-indigo-500 mr-2" />
+                    <span>Accuracy</span>
+                  </div>
+                  <span className="font-semibold">
+                    {Math.round((results.correctAnswers / (results.totalQuestions - results.skippedQuestions)) * 100)}%
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <Zap className="h-5 w-5 text-orange-500 mr-2" />
+                    <span>Speed</span>
+                  </div>
+                  <span className="font-semibold">
+                    {Math.round(results.timeTaken / results.totalQuestions)}s/Q
+                  </span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center">
+                    <TrendingUp className="h-5 w-5 text-green-500 mr-2" />
+                    <span>Trend</span>
+                  </div>
+                  <span className="font-semibold text-green-600">+12%</span>
                 </div>
               </div>
             </CardContent>
