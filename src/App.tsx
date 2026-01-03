@@ -1,38 +1,50 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import { useRoutes, Routes, Route } from "react-router-dom";
 import Home from "./components/home";
-import MockTestList from "./components/mock-tests/MockTestList";
-import MockTestPage from "./components/mock-tests/MockTestPage";
-import SpecificTest from "./components/mock-tests/SpecificTest";
-import TutorialHome from "./components/tutorials/TutorialHome";
-import TutorialExample from "./components/tutorials/TutorialExample";
-import HistoryTutorial from "./components/tutorials/HistoryTutorial";
-import EconomyTutorial from "./components/tutorials/EconomyTutorial";
-import AncientHistoryTutorial from "./components/tutorials/AncientHistoryTutorial";
-import MedievalHistoryTutorial from "./components/tutorials/MedievalHistoryTutorial";
-import FreedomStruggleTutorial from "./components/tutorials/FreedomStruggleTutorial";
-import GovernanceTutorial from "./components/tutorials/GovernanceTutorial";
-import InternationalRelationsTutorial from "./components/tutorials/InternationalRelationsTutorial";
-import EconomicBasicsTutorial from "./components/tutorials/EconomicBasicsTutorial";
-import BudgetTutorial from "./components/tutorials/BudgetTutorial";
-import BankingTutorial from "./components/tutorials/BankingTutorial";
-import CategoryPage from "./components/tutorials/CategoryPage";
-import AboutUs from "./components/pages/AboutUs";
-import Courses from "./components/pages/Courses";
-import SuccessStories from "./components/pages/SuccessStories";
-import LatestNews from "./components/pages/LatestNews";
-import CareerGuide from "./components/pages/CareerGuide";
-import HelpCenter from "./components/pages/HelpCenter";
-import TermsOfService from "./components/pages/TermsOfService";
-import PrivacyPolicy from "./components/pages/PrivacyPolicy";
-import CookiePolicy from "./components/pages/CookiePolicy";
-import RefundPolicy from "./components/pages/RefundPolicy";
-import NotesLibrary from "./components/pages/NotesLibrary";
 import routes from "tempo-routes";
+
+// Lazy load all route components
+const MockTestList = lazy(() => import("./components/mock-tests/MockTestList"));
+const MockTestPage = lazy(() => import("./components/mock-tests/MockTestPage"));
+const SpecificTest = lazy(() => import("./components/mock-tests/SpecificTest"));
+const TutorialHome = lazy(() => import("./components/tutorials/TutorialHome"));
+const TutorialExample = lazy(() => import("./components/tutorials/TutorialExample"));
+const HistoryTutorial = lazy(() => import("./components/tutorials/HistoryTutorial"));
+const EconomyTutorial = lazy(() => import("./components/tutorials/EconomyTutorial"));
+const AncientHistoryTutorial = lazy(() => import("./components/tutorials/AncientHistoryTutorial"));
+const MedievalHistoryTutorial = lazy(() => import("./components/tutorials/MedievalHistoryTutorial"));
+const FreedomStruggleTutorial = lazy(() => import("./components/tutorials/FreedomStruggleTutorial"));
+const GovernanceTutorial = lazy(() => import("./components/tutorials/GovernanceTutorial"));
+const InternationalRelationsTutorial = lazy(() => import("./components/tutorials/InternationalRelationsTutorial"));
+const EconomicBasicsTutorial = lazy(() => import("./components/tutorials/EconomicBasicsTutorial"));
+const BudgetTutorial = lazy(() => import("./components/tutorials/BudgetTutorial"));
+const BankingTutorial = lazy(() => import("./components/tutorials/BankingTutorial"));
+const CategoryPage = lazy(() => import("./components/tutorials/CategoryPage"));
+const AboutUs = lazy(() => import("./components/pages/AboutUs"));
+const Courses = lazy(() => import("./components/pages/Courses"));
+const SuccessStories = lazy(() => import("./components/pages/SuccessStories"));
+const LatestNews = lazy(() => import("./components/pages/LatestNews"));
+const CareerGuide = lazy(() => import("./components/pages/CareerGuide"));
+const HelpCenter = lazy(() => import("./components/pages/HelpCenter"));
+const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
+const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
+const CookiePolicy = lazy(() => import("./components/pages/CookiePolicy"));
+const RefundPolicy = lazy(() => import("./components/pages/RefundPolicy"));
+const NotesLibrary = lazy(() => import("./components/pages/NotesLibrary"));
 
 function App() {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-muted/20 to-background">
+        <div className="text-center">
+          <div className="relative w-16 h-16 mx-auto mb-6">
+            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+            <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-blue-500 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }}></div>
+          </div>
+          <p className="text-lg font-medium text-muted-foreground animate-pulse">Loading amazing content...</p>
+        </div>
+      </div>
+    }>
       <div className="min-h-screen">
         {import.meta.env.VITE_TEMPO === "true" ? useRoutes(routes) : null}
         <Routes>

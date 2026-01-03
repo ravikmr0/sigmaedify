@@ -215,13 +215,13 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
       <Header isLoggedIn={isLoggedIn} />
 
       {/* Hero Section */}
-      <section className="py-20 bg-[#050c1c] text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white opacity-10 animate-grid-spin"></div>
+      <section className="py-24 md:py-32 bg-gradient-to-br from-[#0a1628] via-[#0f1f3d] to-[#050c1c] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white opacity-5"></div>
 
         {/* Animated blobs */}
-        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/20 rounded-full filter blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-500/20 rounded-full filter blur-3xl animate-pulse-medium"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/20 rounded-full filter blur-3xl animate-pulse-fast"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse-medium"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full filter blur-3xl animate-pulse-fast"></div>
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
@@ -229,15 +229,18 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-4xl font-bold mb-6 sm:text-5xl lg:text-6xl"
+                className="text-4xl font-bold mb-6 sm:text-5xl lg:text-6xl leading-tight"
               >
-                Prepare for Government Exams with Confidence
+                Prepare for Government Exams with{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                  Confidence
+                </span>
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-xl mb-8 text-gray-300"
+                className="text-lg md:text-xl mb-8 text-gray-300 leading-relaxed"
               >
                 Join thousands of successful candidates who have achieved their
                 dreams with our comprehensive exam preparation platform.
@@ -251,14 +254,14 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                 <Button
                   size="lg"
                   variant="default"
-                  className="bg-blue-600 hover:bg-blue-700"
+                  className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300"
                 >
                   Get Started
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white/10"
+                  className="border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 backdrop-blur-sm"
                 >
                   Learn More
                 </Button>
@@ -358,13 +361,20 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-20 md:py-24 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Why Choose Us?</h2>
-            <p className="text-lg text-muted-foreground">
-              Everything you need to crack your dream exam
-            </p>
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Us?</h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Everything you need to crack your dream exam with excellence
+              </p>
+            </motion.div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
@@ -395,16 +405,23 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
       </section>
 
       {/* LMS Features Section */}
-      <section className="py-16 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/30">
+      <section className="py-20 md:py-24 bg-gradient-to-r from-blue-50/50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/20">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Advanced Learning Management Features
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Our platform offers comprehensive tools to enhance your learning
-              experience
-            </p>
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Advanced Learning Management Features
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Our platform offers comprehensive tools to enhance your learning
+                experience
+              </p>
+            </motion.div>
           </div>
 
           {/* AI-Powered Doubt Resolution - NEW FEATURE */}
@@ -415,8 +432,8 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden mb-12"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-              <div className="p-8">
-                <div className="w-16 h-16 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center mb-4">
+              <div className="p-8 md:p-10">
+                <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center mb-6 shadow-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="32"
@@ -807,7 +824,7 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-accent">
+      <section className="py-20 bg-gradient-to-r from-primary/5 to-blue-500/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -819,8 +836,8 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-4xl font-bold mb-2">{stat.value}</div>
-                <div className="text-muted-foreground">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-primary">{stat.value}</div>
+                <div className="text-muted-foreground font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -828,15 +845,22 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
       </section>
 
       {/* Pricing Section */}
-      <section className="py-20">
+      <section className="py-24 bg-gradient-to-b from-background to-muted/30">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Choose the plan that best suits your needs
-            </p>
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Simple, Transparent Pricing
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Choose the plan that best suits your learning journey
+              </p>
+            </motion.div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
@@ -847,28 +871,30 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="h-full hover:shadow-lg transition-shadow duration-300">
-                  <CardHeader>
-                    <CardTitle className="text-xl mb-2">{plan.name}</CardTitle>
+                <Card className="h-full hover:shadow-xl hover:border-primary/50 transition-all duration-300 group relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <CardHeader className="relative">
+                    <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                     <div className="mb-4">
-                      <span className="text-4xl font-bold">{plan.price}</span>
-                      <span className="text-muted-foreground">
-                        {" "}
+                      <span className="text-4xl md:text-5xl font-bold text-primary">{plan.price}</span>
+                      <span className="text-muted-foreground ml-2">
                         {plan.duration}
                       </span>
                     </div>
-                    <p className="text-muted-foreground">{plan.description}</p>
+                    <p className="text-muted-foreground leading-relaxed">{plan.description}</p>
                   </CardHeader>
-                  <CardContent>
-                    <ul className="space-y-2">
+                  <CardContent className="relative">
+                    <ul className="space-y-3">
                       {plan.features.map((feature, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <Check className="h-4 w-4 text-primary flex-shrink-0 mt-1" />
-                          <span>{feature}</span>
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="mt-1 rounded-full bg-primary/10 p-0.5">
+                            <Check className="h-4 w-4 text-primary flex-shrink-0" />
+                          </div>
+                          <span className="text-sm leading-relaxed">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button className="w-full mt-6" variant="default">
+                    <Button className="w-full mt-6 shadow-md hover:shadow-lg transition-all duration-300" variant="default">
                       Get Started
                     </Button>
                   </CardContent>
