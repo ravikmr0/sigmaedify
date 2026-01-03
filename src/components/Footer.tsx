@@ -89,17 +89,17 @@ const legalLinks = [
 const Footer: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <footer className="bg-background border-t">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-muted/30 border-t">
+      <div className="container mx-auto px-4 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <img src="/sigmaedify.svg" alt="Logo" className="h-8 w-8" />
-              <span className="font-bold text-xl">Sigma Edify</span>
+              <span className="font-bold text-xl bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">Sigma Edify</span>
             </div>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Empowering aspirants to achieve their dreams through comprehensive
               exam preparation.
             </p>
@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-muted-foreground hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-all duration-200 hover:scale-110"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

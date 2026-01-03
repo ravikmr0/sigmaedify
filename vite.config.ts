@@ -7,7 +7,7 @@ const conditionalPlugins: [string, Record<string, any>][] = [];
 
 // @ts-ignore
 if (process.env.TEMPO === "true") {
-  conditionalPlugins.push(["tempo-devtools/swc", {}]);
+  
 }
 
 // https://vitejs.dev/config/
@@ -15,6 +15,19 @@ export default defineConfig({
   base: process.env.NODE_ENV === "development" ? "/" : process.env.VITE_BASE_PATH || "/",
   optimizeDeps: {
     entries: ["src/main.tsx", "src/tempobook/**/*"],
+    include: ["react", "react-dom", "react-router-dom"],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-ui': ['@radix-ui/react-accordion', '@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
+          'vendor-form': ['react-hook-form', '@hookform/resolvers', 'zod'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 1000,
   },
   plugins: [
     react({
@@ -30,6 +43,7 @@ export default defineConfig({
   },
   server: {
     // @ts-ignore
-    allowedHosts: true,
+    allowedHosts: process.env.TEMPO === "true" ? true : undefined,
+    host: process.env.TEMPO === "true" ? '0.0.0.0' : undefined,
   }
 });

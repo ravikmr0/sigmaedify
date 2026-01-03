@@ -27,13 +27,13 @@ const Header: React.FC<HeaderProps> = ({
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo and Mobile Search */}
         <div className="flex items-center gap-6 flex-1">
-          <a href="/" className="flex items-center space-x-2">
-            <img src="/sigmaedify.svg" alt="Logo" className="h-8 w-8" />
-            <span className="hidden font-bold sm:inline-block">
+          <a href="/" className="flex items-center space-x-2 group">
+            <img src="/sigmaedify.svg" alt="Logo" className="h-8 w-8 transition-transform group-hover:scale-110" />
+            <span className="hidden font-bold text-lg sm:inline-block bg-gradient-to-r from-primary to-blue-600 bg-clip-text text-transparent">
               Sigma Edify
             </span>
           </a>
@@ -100,14 +100,7 @@ const Header: React.FC<HeaderProps> = ({
               {/* Profile Menu */}
               <ProfileMenu />
             </>
-          ) : (
-            <div className="hidden sm:flex items-center space-x-4">
-              <Button variant="ghost" onClick={onSignIn}>
-                Sign In
-              </Button>
-              <Button onClick={onSignUp}>Sign Up</Button>
-            </div>
-          )}
+          ) : null}
 
           {/* Mobile Menu Button */}
           <Button
@@ -165,14 +158,6 @@ const Header: React.FC<HeaderProps> = ({
             >
               Notes Library
             </Button>
-            {!isLoggedIn && (
-              <div className="flex flex-col space-y-2 pt-2 border-t">
-                <Button variant="ghost" onClick={onSignIn}>
-                  Sign In
-                </Button>
-                <Button onClick={onSignUp}>Sign Up</Button>
-              </div>
-            )}
           </nav>
         </div>
       )}
