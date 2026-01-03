@@ -28,6 +28,8 @@ import {
   ChevronLeft,
   ChevronRight,
   FileText,
+  HelpCircle,
+  Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -279,9 +281,18 @@ const MockTestInterface: React.FC<MockTestProps> = ({
         <div className="flex-1 p-6 overflow-y-auto">
           <Card className="mb-6">
             <CardHeader>
-              <CardTitle className="text-lg">
-                Question {currentQuestionIndex + 1}: {currentQuestion.text}
-              </CardTitle>
+              <div className="flex items-start justify-between">
+                <div className="flex-1">
+                  <CardTitle className="text-lg mb-2">
+                    Question {currentQuestionIndex + 1}: {currentQuestion.text}
+                  </CardTitle>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <span className="px-2 py-1 bg-accent rounded-md">
+                      {currentQuestion.subject}
+                    </span>
+                  </div>
+                </div>
+              </div>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
@@ -305,38 +316,52 @@ const MockTestInterface: React.FC<MockTestProps> = ({
                 ))}
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button
-                variant="outline"
-                onClick={toggleMarkForReview}
-                className={
-                  markedForReview[currentQuestionIndex]
-                    ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
-                    : ""
-                }
-              >
-                <Flag className="mr-2 h-4 w-4" />
-                {markedForReview[currentQuestionIndex]
-                  ? "Marked for Review"
-                  : "Mark for Review"}
-              </Button>
-              <div className="flex gap-2">
+            <CardFooter className="flex flex-col gap-3">
+              <div className="flex justify-between w-full">
                 <Button
                   variant="outline"
-                  onClick={goToPreviousQuestion}
-                  disabled={currentQuestionIndex === 0}
+                  onClick={toggleMarkForReview}
+                  className={
+                    markedForReview[currentQuestionIndex]
+                      ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100"
+                      : ""
+                  }
                 >
-                  <ChevronLeft className="mr-2 h-4 w-4" />
-                  Previous
+                  <Flag className="mr-2 h-4 w-4" />
+                  {markedForReview[currentQuestionIndex]
+                    ? "Marked for Review"
+                    : "Mark for Review"}
                 </Button>
-                <Button
-                  onClick={goToNextQuestion}
-                  disabled={currentQuestionIndex === questions.length - 1}
-                >
-                  Next
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={goToPreviousQuestion}
+                    disabled={currentQuestionIndex === 0}
+                  >
+                    <ChevronLeft className="mr-2 h-4 w-4" />
+                    Previous
+                  </Button>
+                  <Button
+                    onClick={goToNextQuestion}
+                    disabled={currentQuestionIndex === questions.length - 1}
+                  >
+                    Next
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </div>
+
+              {/* Helpful Tips Section */}
+              {answers[currentQuestionIndex] === null && (
+                <div className="w-full p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
+                  <div className="flex items-start gap-2">
+                    <Lightbulb className="h-4 w-4 text-blue-600 mt-0.5" />
+                    <div className="text-xs text-blue-900 dark:text-blue-200">
+                      <span className="font-medium">Tip:</span> Read the question carefully and eliminate obviously wrong answers first.
+                    </div>
+                  </div>
+                </div>
+              )}
             </CardFooter>
           </Card>
         </div>
