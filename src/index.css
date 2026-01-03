@@ -75,10 +75,22 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold tracking-tight;
+  }
+  
+  /* Optimize images for performance */
+  img, video {
+    content-visibility: auto;
+  }
+  
+  /* Reduce layout shift */
+  img {
+    height: auto;
+    max-width: 100%;
   }
 }
 

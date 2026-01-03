@@ -3,8 +3,8 @@ import Header from "./navigation/Header";
 import Footer from "./Footer";
 import LegalFooter from "./LegalFooter";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import {
   GraduationCap,
   BookOpen,
@@ -547,17 +547,13 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                   <video
                     className="w-full h-full object-cover"
                     controls
-                    autoPlay
                     muted
                     playsInline
-                    poster="https://images.unsplash.com/photo-1616587894289-86480e533129?w=800&q=80"
+                    preload="metadata"
+                    poster="https://images.unsplash.com/photo-1616587894289-86480e533129?w=400&q=60"
                   >
                     <source
-                      src="/public/videos/sigmaedify.mp4"
-                      type="video/mp4"
-                    />
-                    <source
-                      src="/public/videos/sigmaedify.mp4"
+                      src="/videos/sigmaedify.mp4"
                       type="video/mp4"
                     />
                     Your browser does not support the video tag.

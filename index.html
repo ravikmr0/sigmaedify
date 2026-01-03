@@ -9,34 +9,47 @@
     <meta name="keywords" content="paid course free, paid coaching free access, Unacademy paid course free, Testbook paid classes free, BYJU's Exam Prep paid batch free, Adda247 paid course free, SSC CGL paid course free, UPSC paid course free, Railway paid course free, RRB NTPC paid batch free, paid batch free today, free access to paid courses, all teachers paid course free, top educators paid classes free, paid coaching data free, premium govt exam classes free, Vajiram and Ravi paid course free, Shankar IAS Academy paid batch free, InsightsIAS paid course free, IASbaba paid classes free, Drishti IAS paid batch free, KD Campus paid SSC course free, paid content free for students, where to get paid coaching free, how to access paid courses free, paid quality classes free, one platform all paid courses free">
     <title>Paid Course Free | Unacademy, BYJU's, Adda247 Paid Batch Free | Sigma Edify - Premium Coaching Free Access SSC UPSC Railway</title>
     
-    <!-- Preload fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Critical CSS inline for faster first paint -->
+    <style>
+      body{margin:0;font-family:system-ui,-apple-system,sans-serif}
+      #root{min-height:100vh}
+      .initial-loader{display:flex;align-items:center;justify-content:center;min-height:100vh;background:#fff}
+      @media(prefers-color-scheme:dark){.initial-loader{background:#0a0a0f}}
+      .spinner{width:40px;height:40px;border:3px solid #e5e7eb;border-top-color:#3b82f6;border-radius:50%;animation:spin 0.8s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+    </style>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/sigmaedify.svg" as="image" type="image/svg+xml">
     
     <!-- Preconnect to external domains -->
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     
-    <!-- Google Adsense Setup -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5436453808132391"
-     crossorigin="anonymous"></script>
-    
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RJJ5MQJ0DB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RJJ5MQJ0DB');
-</script>
+    <!-- Load fonts with display swap for faster rendering -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
 
   </head>
   <body>
+    <!-- Initial loader shown before React loads -->
+    <div id="initial-loader" class="initial-loader">
+      <div class="spinner"></div>
+    </div>
+    <script>
+      // Remove initial loader once React takes over
+      window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+          var loader = document.getElementById('initial-loader');
+          if (loader) loader.style.display = 'none';
+        }, 100);
+      });
+    </script>
+    
     <!-- SEO Hidden Content for Search Engines -->
     <div style="position: absolute; left: -9999px; top: -9999px; visibility: hidden;">
       <h1>Paid Course Free Access - Premium Coaching Free Today</h1>
@@ -68,8 +81,33 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <amp-auto-ads type="adsense"
-        data-ad-client="ca-pub-5436453808132391">
-</amp-auto-ads>
+    <!-- Defer non-critical third-party scripts -->
+    <script>
+      // Load ads after page is interactive
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          // Google Adsense
+          var adsScript = document.createElement('script');
+          adsScript.async = true;
+          adsScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5436453808132391';
+          adsScript.crossOrigin = 'anonymous';
+          document.head.appendChild(adsScript);
+          
+          // Google Analytics
+          var gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-RJJ5MQJ0DB';
+          document.head.appendChild(gaScript);
+          
+          gaScript.onload = function() {
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            window.gtag = gtag;
+            gtag('js', new Date());
+            gtag('config', 'G-RJJ5MQJ0DB');
+          };
+        }, 2000);
+      });
+    </script>
   </body>
 </html>
