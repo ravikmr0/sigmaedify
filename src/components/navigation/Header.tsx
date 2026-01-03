@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import { Bell, Menu, Search } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { ModeToggle } from "@/components/mode-toggle";
 
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-
-import ProfileMenu from "./ProfileMenu";
-import NotificationsPanel from "./NotificationsPanel";
-import CourseDropdown from "./CourseDropdown";
 
 interface HeaderProps {
   isLoggedIn?: boolean;
@@ -23,7 +18,6 @@ const Header: React.FC<HeaderProps> = ({
   onSignUp = () => console.log("Sign up clicked"),
 }) => {
   const navigate = useNavigate();
-  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -74,33 +68,6 @@ const Header: React.FC<HeaderProps> = ({
         {/* Right Section */}
         <div className="flex items-center space-x-4">
           <ModeToggle />
-          {isLoggedIn ? (
-            <>
-              {/* Notifications */}
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="relative"
-                  onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                >
-                  <Bell className="h-5 w-5" />
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
-                    3
-                  </span>
-                </Button>
-                <NotificationsPanel
-                  isOpen={isNotificationsOpen}
-                  onNotificationClick={() => setIsNotificationsOpen(false)}
-                />
-              </div>
-
-              <Separator orientation="vertical" className="h-6" />
-
-              {/* Profile Menu */}
-              <ProfileMenu />
-            </>
-          ) : null}
 
           {/* Mobile Menu Button */}
           <Button
