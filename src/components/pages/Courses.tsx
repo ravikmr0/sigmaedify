@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Header from "../navigation/Header";
 import Footer from "../Footer";
 import LegalFooter from "../LegalFooter";
@@ -224,6 +225,7 @@ const courses: Course[] = [
 ];
 
 const Courses: React.FC = () => {
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = React.useState<string | null>(
     null,
   );
@@ -412,7 +414,7 @@ const Courses: React.FC = () => {
                     <Play className="mr-2 h-4 w-4" />
                     One Short Video
                   </Button>
-                  <Button>
+                  <Button onClick={() => navigate(`/course/${course.id}`)}>
                     <BookOpen className="mr-2 h-4 w-4" />
                     Watch Now
                   </Button>

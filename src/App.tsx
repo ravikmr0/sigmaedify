@@ -1,7 +1,9 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, memo } from "react";
 import { useRoutes, Routes, Route } from "react-router-dom";
-import Home from "./components/home";
 import routes from "tempo-routes";
+
+// Lazy load Home component for better initial load
+const Home = lazy(() => import("./components/home"));
 
 // Lazy load all route components
 const MockTestList = lazy(() => import("./components/mock-tests/MockTestList"));
@@ -32,20 +34,21 @@ const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
 const CookiePolicy = lazy(() => import("./components/pages/CookiePolicy"));
 const RefundPolicy = lazy(() => import("./components/pages/RefundPolicy"));
 const NotesLibrary = lazy(() => import("./components/pages/NotesLibrary"));
+const CoursePage = lazy(() => import("./components/pages/CoursePage"));
+
+// Lightweight loading component
+const LoadingSpinner = memo(() => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <div className="text-center">
+      <div className="w-12 h-12 border-3 border-primary/30 border-t-primary rounded-full animate-spin mx-auto mb-4"></div>
+      <p className="text-sm text-muted-foreground">Loading...</p>
+    </div>
+  </div>
+));
 
 function App() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-muted/20 to-background">
-        <div className="text-center">
-          <div className="relative w-16 h-16 mx-auto mb-6">
-            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-            <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-b-blue-500 rounded-full animate-spin" style={{ animationDirection: 'reverse', animationDuration: '0.8s' }}></div>
-          </div>
-          <p className="text-lg font-medium text-muted-foreground animate-pulse">Loading amazing content...</p>
-        </div>
-      </div>
-    }>
+    <Suspense fallback={<LoadingSpinner />}>
       <div className="min-h-screen">
         {import.meta.env.VITE_TEMPO === "true" ? useRoutes(routes) : null}
         <Routes>
@@ -102,6 +105,7 @@ function App() {
           />
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/courses" element={<Courses />} />
+          <Route path="/course/:courseId" element={<CoursePage />} />
           <Route path="/success-stories" element={<SuccessStories />} />
           <Route path="/latest-news" element={<LatestNews />} />
           <Route path="/career-guide" element={<CareerGuide />} />
