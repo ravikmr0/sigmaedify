@@ -240,11 +240,33 @@ const Courses: React.FC = () => {
   );
   const levels = Array.from(new Set(courses.map((course) => course.level)));
 
+  // SEO Keywords for search visibility
+  const seoKeywords = [
+    "Sigma Edify free courses", "Sigma Edify paid course free", "Sigma Edify competitive exams",
+    "SSC CGL free paid course", "SSC CHSL free coaching", "SSC MTS free paid batch",
+    "UPSC free paid course", "UPSC GS free coaching", "IAS free online coaching",
+    "Railway free paid course", "RRB NTPC free coaching", "Group D free paid batch",
+    "State PSC free coaching", "Police exam free paid course", "Defence exam free coaching",
+    "Best free online coaching India", "Free premium coaching", "All competitive exam courses free"
+  ];
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Header />
 
       <div className="container mx-auto py-12 px-4 flex-grow">
+        {/* SEO Hidden Keywords Section */}
+        <div className="sr-only" aria-hidden="true">
+          <h2>Sigma Edify Free Courses - SSC UPSC Railway Preparation</h2>
+          <p>
+            Get Sigma Edify free courses, paid course free access, SSC CGL free coaching, 
+            UPSC free paid course, Railway free coaching, best free online coaching India. 
+            All teachers free course like Careerwill, Unacademy, Physics Wallah, Adda247, 
+            Study IQ free paid content. Premium content free access for competitive exams.
+            One app all courses free, free coaching for SSC UPSC, paid course free today.
+          </p>
+        </div>
+
         {/* Hero Section */}
         <div className="text-center mb-12">
           <motion.h1
@@ -252,7 +274,7 @@ const Courses: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl font-bold mb-4"
           >
-            Our Courses
+            Sigma Edify Free & Premium Courses for SSC, UPSC, Railway Exams
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -260,9 +282,20 @@ const Courses: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-xl text-muted-foreground max-w-3xl mx-auto"
           >
-            Comprehensive courses designed by experts to help you succeed in
-            government exams.
+            Access Sigma Edify free courses and paid course free content. Best free online coaching India 
+            for all competitive exams - SSC CGL, UPSC, Railway, Banking & more. Premium content free access!
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-wrap justify-center gap-2 mt-4"
+          >
+            <Badge variant="secondary">🔥 Free Premium Content</Badge>
+            <Badge variant="secondary">📚 All Teachers Course</Badge>
+            <Badge variant="secondary">🎯 SSC UPSC Railway</Badge>
+            <Badge variant="secondary">💡 Paid Batch Free Access</Badge>
+          </motion.div>
         </div>
 
         {/* Filters */}
@@ -407,27 +440,50 @@ const Courses: React.FC = () => {
           </div>
         )}
 
+        {/* SEO Keywords Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg p-6 mb-12 border border-primary/20"
+        >
+          <h3 className="text-xl font-semibold mb-4 text-center">
+            🎓 One Platform - All Govt Exams Free Coaching
+          </h3>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              "SSC CGL Free Course", "UPSC Free Coaching", "Railway Free Batch",
+              "SSC CHSL Free", "State PSC Free", "Banking Free Course",
+              "Defence Exam Free", "Police Exam Free", "Group D Free"
+            ].map((tag, idx) => (
+              <Badge key={idx} variant="outline" className="text-xs">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Course Benefits */}
         <div className="bg-accent rounded-lg p-8 mb-12">
           <h2 className="text-3xl font-bold mb-8 text-center">
-            Why Choose Our Courses?
+            Why Sigma Edify is the Best Free Online Coaching India?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                title: "Expert Faculty",
+                title: "All Teachers Free Course",
                 description:
-                  "Learn from experienced educators and top rankers who have deep knowledge of exam patterns and requirements.",
+                  "Access courses like Careerwill, Unacademy, Physics Wallah, Adda247, Study IQ - all top educators free classes at one place.",
               },
               {
-                title: "Comprehensive Content",
+                title: "Free Premium Content",
                 description:
-                  "Our courses cover the entire syllabus with structured study materials, practice questions, and mock tests.",
+                  "Get paid course free access with comprehensive study materials, practice questions, and mock tests for SSC, UPSC, Railway exams.",
               },
               {
-                title: "Flexible Learning",
+                title: "Paid Batch Free Access",
                 description:
-                  "Access course content anytime, anywhere. Study at your own pace with lifetime access to materials.",
+                  "Limited offer: Access premium paid batches absolutely free. One app all courses free for competitive exam preparation.",
               },
             ].map((benefit, index) => (
               <motion.div
@@ -569,14 +625,44 @@ const Courses: React.FC = () => {
           className="text-center bg-primary/10 rounded-lg p-8"
         >
           <h2 className="text-3xl font-bold mb-4">
-            Ready to Start Your Preparation?
+            🚀 Get Paid Course Free Today - Limited Offer!
           </h2>
           <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
-            Choose from our wide range of courses and begin your journey towards
-            success in government exams.
+            Join Sigma Edify for free premium coaching. Access all competitive exam courses free - 
+            SSC, UPSC, Railway, Banking, Defence. Best free course online with top educators!
           </p>
-          <Button size="lg">Browse All Courses</Button>
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button size="lg">Start Free Course Now</Button>
+            <Button size="lg" variant="outline">Explore Premium Content Free</Button>
+          </div>
+          <p className="text-sm text-muted-foreground mt-4">
+            ✓ Free paid batch access ✓ All teachers course ✓ Premium content free ✓ One platform all exams
+          </p>
         </motion.div>
+
+        {/* SEO Footer Content */}
+        <div className="mt-12 p-6 bg-muted/30 rounded-lg">
+          <h3 className="text-lg font-semibold mb-3">About Sigma Edify Courses</h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Sigma Edify offers the best free online coaching India for all competitive exams. 
+            Get SSC CGL free paid course, UPSC free coaching, Railway free paid course, and more. 
+            Access premium content like Careerwill free paid course, Unacademy paid course free, 
+            Physics Wallah free paid batch, Adda247 free paid course, Study IQ free paid content, 
+            and Byju's free paid course - all at one platform.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              "Sigma Edify SSC UPSC preparation", "SSC CPO free preparation", "SSC GD free classes",
+              "Best SSC free course online", "UPSC prelims free batch", "UPSC mains free paid content",
+              "Best UPSC free course India", "UPSC all subjects free course", "Police exam free paid course",
+              "Where to get paid SSC course free", "Free UPSC coaching like paid batch"
+            ].map((keyword, idx) => (
+              <span key={idx} className="text-xs text-muted-foreground bg-muted px-2 py-1 rounded">
+                {keyword}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       <Footer />
