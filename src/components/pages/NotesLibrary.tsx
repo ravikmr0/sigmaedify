@@ -33,6 +33,7 @@ interface Note {
   date: string;
   fileSize: string;
   featured?: boolean;
+  driveLink?: string;
 }
 
 const notes: Note[] = [
@@ -50,7 +51,7 @@ const notes: Note[] = [
     date: "2023-12-15",
     fileSize: "12.5 MB",
     featured: true,
-    
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "upsc-gs-2",
@@ -65,6 +66,7 @@ const notes: Note[] = [
     rating: 4.7,
     date: "2023-11-20",
     fileSize: "10.2 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "upsc-gs-3",
@@ -79,6 +81,7 @@ const notes: Note[] = [
     rating: 4.6,
     date: "2023-10-05",
     fileSize: "11.8 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "upsc-gs-4",
@@ -93,6 +96,7 @@ const notes: Note[] = [
     rating: 4.9,
     date: "2023-09-12",
     fileSize: "8.5 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-cgl-math",
@@ -108,6 +112,7 @@ const notes: Note[] = [
     date: "2023-08-25",
     fileSize: "7.2 MB",
     featured: true,
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-cgl-reasoning",
@@ -122,6 +127,7 @@ const notes: Note[] = [
     rating: 4.6,
     date: "2023-07-18",
     fileSize: "8.1 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-cgl-english",
@@ -136,6 +142,7 @@ const notes: Note[] = [
     rating: 4.5,
     date: "2023-06-30",
     fileSize: "6.8 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-cgl-gk",
@@ -150,6 +157,7 @@ const notes: Note[] = [
     rating: 4.6,
     date: "2023-05-22",
     fileSize: "9.3 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-chsl-complete",
@@ -164,6 +172,7 @@ const notes: Note[] = [
     rating: 4.7,
     date: "2023-04-15",
     fileSize: "15.6 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "ssc-cpo-complete",
@@ -178,6 +187,7 @@ const notes: Note[] = [
     rating: 4.5,
     date: "2023-03-10",
     fileSize: "13.2 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "railway-rrb-ntpc",
@@ -193,6 +203,7 @@ const notes: Note[] = [
     date: "2023-02-05",
     fileSize: "14.8 MB",
     featured: true,
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
   {
     id: "railway-group-d",
@@ -207,6 +218,7 @@ const notes: Note[] = [
     rating: 4.5,
     date: "2023-01-20",
     fileSize: "10.5 MB",
+    driveLink: "https://drive.google.com/file/d/YOUR_FILE_ID/view?usp=sharing",
   },
 ];
 
@@ -233,11 +245,13 @@ const NotesLibrary: React.FC = () => {
   });
 
   const handleDownload = (noteId: string) => {
-    // In a real app, this would trigger a download
-    console.log(`Downloading note with ID: ${noteId}`);
-    alert(
-      `Download started for note: ${notes.find((note) => note.id === noteId)?.title}`,
-    );
+    const note = notes.find((note) => note.id === noteId);
+    if (note?.driveLink) {
+      // Open Google Drive link in a new tab
+      window.open(note.driveLink, '_blank');
+    } else {
+      alert('Download link not available for this note.');
+    }
   };
 
   return (

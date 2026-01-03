@@ -20,6 +20,7 @@ import {
   BookOpen,
   CheckCircle,
   Filter,
+  Play,
 } from "lucide-react";
 
 interface Course {
@@ -37,6 +38,7 @@ interface Course {
   features: string[];
   popular?: boolean;
   new?: boolean;
+  thumbnail: string;
 }
 
 const courses: Course[] = [
@@ -53,6 +55,7 @@ const courses: Course[] = [
     level: "All Levels",
     price: "₹45,999",
     originalPrice: "₹59,999",
+    thumbnail: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=800&q=80",
     features: [
       "Complete study material for Prelims and Mains",
       "Regular mock tests and evaluations",
@@ -75,6 +78,7 @@ const courses: Course[] = [
     level: "Intermediate",
     price: "₹12,999",
     originalPrice: "₹15,999",
+    thumbnail: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
     features: [
       "Comprehensive coverage of all subjects",
       "Topic-wise tests and full-length mock tests",
@@ -97,6 +101,7 @@ const courses: Course[] = [
     level: "Beginner",
     price: "₹9,999",
     originalPrice: "₹12,999",
+    thumbnail: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&q=80",
     features: [
       "Complete coverage of all banking exam topics",
       "Sectional tests and full-length mock tests",
@@ -118,6 +123,7 @@ const courses: Course[] = [
     level: "Beginner",
     price: "₹7,999",
     originalPrice: "₹9,999",
+    thumbnail: "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&q=80",
     features: [
       "Complete study material for all stages",
       "Regular practice tests and assessments",
@@ -139,6 +145,7 @@ const courses: Course[] = [
     level: "Intermediate",
     price: "₹8,999",
     originalPrice: "₹10,999",
+    thumbnail: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
     features: [
       "Comprehensive coverage of all subjects",
       "Child development and pedagogy focus",
@@ -160,6 +167,7 @@ const courses: Course[] = [
     level: "Advanced",
     price: "₹18,999",
     originalPrice: "₹22,999",
+    thumbnail: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80",
     features: [
       "Comprehensive coverage of the syllabus",
       "Answer writing practice and feedback",
@@ -181,6 +189,7 @@ const courses: Course[] = [
     level: "Intermediate",
     price: "₹14,999",
     originalPrice: "₹17,999",
+    thumbnail: "https://images.unsplash.com/photo-1568992687947-868a62a9f521?w=800&q=80",
     features: [
       "State-specific content and focus",
       "General studies comprehensive coverage",
@@ -202,6 +211,7 @@ const courses: Course[] = [
     level: "Beginner",
     price: "₹11,999",
     originalPrice: "₹14,999",
+    thumbnail: "https://images.unsplash.com/photo-1484820301304-0b43afecb2b1?w=800&q=80",
     features: [
       "Comprehensive coverage of all subjects",
       "Physical fitness guidance",
@@ -284,28 +294,7 @@ const Courses: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-2 items-center">
-            <span className="font-medium mr-2">Level:</span>
-            <div className="space-x-2">
-              <Button
-                variant={selectedLevel === null ? "default" : "outline"}
-                size="sm"
-                onClick={() => setSelectedLevel(null)}
-              >
-                All Levels
-              </Button>
-              {levels.map((level) => (
-                <Button
-                  key={level}
-                  variant={selectedLevel === level ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedLevel(level)}
-                >
-                  {level}
-                </Button>
-              ))}
-            </div>
-          </div>
+
         </div>
 
         {/* Courses Grid */}
@@ -319,7 +308,13 @@ const Courses: React.FC = () => {
               transition={{ delay: index * 0.05 }}
             >
               <Card className="h-full flex flex-col hover:shadow-lg transition-shadow duration-300 overflow-hidden">
-                <CardHeader className="pb-2 relative">
+                {/* Thumbnail Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={course.thumbnail}
+                    alt={course.title}
+                    className="w-full h-full object-cover"
+                  />
                   {course.popular && (
                     <Badge className="absolute top-4 right-4 bg-yellow-500 hover:bg-yellow-600">
                       Popular
@@ -330,6 +325,9 @@ const Courses: React.FC = () => {
                       New
                     </Badge>
                   )}
+                </div>
+
+                <CardHeader className="pb-2">
                   <div className="flex justify-between items-start">
                     <div>
                       <CardTitle className="text-xl">{course.title}</CardTitle>
@@ -377,17 +375,13 @@ const Courses: React.FC = () => {
                   </div>
                 </CardContent>
                 <CardFooter className="flex-shrink-0 border-t pt-4 flex justify-between items-center">
-                  <div>
-                    <p className="text-2xl font-bold">{course.price}</p>
-                    {course.originalPrice && (
-                      <p className="text-sm text-muted-foreground line-through">
-                        {course.originalPrice}
-                      </p>
-                    )}
-                  </div>
+                  <Button variant="outline">
+                    <Play className="mr-2 h-4 w-4" />
+                    One Short Video
+                  </Button>
                   <Button>
                     <BookOpen className="mr-2 h-4 w-4" />
-                    Enroll Now
+                    Watch Now
                   </Button>
                 </CardFooter>
               </Card>
