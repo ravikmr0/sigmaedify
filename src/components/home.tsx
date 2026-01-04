@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./navigation/Header";
 import Footer from "./Footer";
 import LegalFooter from "./LegalFooter";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   GraduationCap,
   BookOpen,
@@ -209,6 +209,49 @@ const paymentFeatures = [
   },
 ];
 
+const taglines = [
+  "Prepare for Government Exams with Confidence",
+  "Your Path to Success Starts Here",
+  "Master Every Subject with Expert Guidance",
+  "Achieve Your Dreams with SigmaEdify",
+];
+
+const RotatingTagline = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % taglines.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.span
+        key={currentIndex}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5 }}
+        className="block"
+      >
+        {taglines[currentIndex].split(" ").map((word, i, arr) => (
+          <span key={i}>
+            {i >= arr.length - 2 ? (
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                {word}{" "}
+              </span>
+            ) : (
+              word + " "
+            )}
+          </span>
+        ))}
+      </motion.span>
+    </AnimatePresence>
+  );
+};
+
 const Home = ({ isLoggedIn = false }: HomeProps) => {
   return (
     <div className="min-h-screen bg-background">
@@ -231,10 +274,7 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-4xl font-bold mb-6 sm:text-5xl lg:text-6xl leading-tight"
               >
-                Prepare for Government Exams with{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                  Confidence
-                </span>
+                <RotatingTagline />
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -242,8 +282,13 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                 transition={{ delay: 0.1 }}
                 className="text-lg md:text-xl mb-8 text-gray-300 leading-relaxed"
               >
-                Join thousands of successful candidates who have achieved their
-                dreams with our comprehensive exam preparation platform.
+                <span className="font-semibold text-white">Courses</span>,{" "}
+                <span className="font-semibold text-white">Mock Tests</span>,{" "}
+                <span className="font-semibold text-white">Notes Library</span>{" "}
+                — All{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-400 font-bold">
+                  Free
+                </span>
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -547,9 +592,8 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                   <video
                     className="w-full h-full object-cover"
                     controls
-                    muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     poster="https://images.unsplash.com/photo-1616587894289-86480e533129?w=400&q=60"
                   >
                     <source
@@ -558,16 +602,6 @@ const Home = ({ isLoggedIn = false }: HomeProps) => {
                     />
                     Your browser does not support the video tag.
                   </video>
-                  <div className="absolute bottom-4 left-4 right-4 z-10">
-                    <div className="flex items-center justify-between text-white/90 text-sm">
-                      <span className="bg-black/50 px-2 py-1 rounded">
-                        
-                      </span>
-                      <span className="bg-black/50 px-2 py-1 rounded">
-                        03:45
-                      </span>
-                    </div>
-                  </div>
                 </div>
               </div>
               <div className="p-8 order-1 md:order-2">
