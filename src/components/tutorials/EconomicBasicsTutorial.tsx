@@ -71,12 +71,12 @@ const EconomicBasicsTutorial: React.FC = () => {
         <tbody>
           <tr>
             <td className="border border-gray-300 p-2">Excess Demand</td>
-            <td className="border border-gray-300 p-2">Quantity demanded > Quantity supplied</td>
+            <td className="border border-gray-300 p-2">Quantity demanded &gt; Quantity supplied</td>
             <td className="border border-gray-300 p-2">Price rises</td>
           </tr>
           <tr>
             <td className="border border-gray-300 p-2">Excess Supply</td>
-            <td className="border border-gray-300 p-2">Quantity supplied > Quantity demanded</td>
+            <td className="border border-gray-300 p-2">Quantity supplied &gt; Quantity demanded</td>
             <td className="border border-gray-300 p-2">Price falls</td>
           </tr>
           <tr>
