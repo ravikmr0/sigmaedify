@@ -78,7 +78,7 @@ const coursesData: Record<string, CourseData> = {
             id: "v1",
             title: "Class 1: UPSC CSE Overview & Exam Pattern",
             duration: "45:00",
-            driveLink: "https://drive.google.com/file/d/YOUR_VIDEO_ID_1/preview",
+            driveLink: "https://drive.google.com/file/d/1vhOLHRMfMrcuV9NmlbtwpOerEGHUlH8u/view?usp=sharing",
             isCompleted: false,
             isLocked: false,
             description: "Complete overview of UPSC Civil Services Examination pattern and stages.",
